@@ -1,0 +1,9 @@
+[submodule "libraries/ladac"]
+	path = libraries/ladac
+	url = ../ladac.git
+[submodule "libraries/ladac-examples"]
+	path = libraries/ladac-examples
+	url = ../ladac-examples.git
+[submodule "libraries/ladac-examples-data"]
+	path = libraries/ladac-examples-data
+	url = ../ladac-examples-data.git
