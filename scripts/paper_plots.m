@@ -1,32 +1,82 @@
 init_Minnie_Loiter_FTC;
 
-% increase yaw damping
-copter.aero.rate_damp = 1;
+% disable stick inputs
+block = find_system(gcb,'SearchDepth',0,'Name','Manual Switch');
+set_param(block{1}, 'sw', '0');
+
+% moderate yaw damping
+copter.aero.rate_damp = 0.8;
 
 %%
 
 width = 12;
 height = 7;
 
-%% simulate slow 3rd motor failure
+%% simulate fast 3rd motor failure
 
-failure_time = 1;
-failure_slew_rate = 1000;
-failure_time_delay_1 = 2;
-failure_time_delay_2 = 2;
+failure_time_mot_1      = 1000;
+failure_slew_rate_mot_1 = 0;
+failure_time_mot_2      = 2;
+failure_slew_rate_mot_2 = 1000;
+failure_time_mot_3      = 3;
+failure_slew_rate_mot_3 = 1000;
+failure_time_mot_4      = 2;
+failure_slew_rate_mot_4 = 1000;
+
 name_ending = '_fast';
 out = sim('QuadcopterSimModel_Loiter_FTC','StartTime','-2','StopTime','15');
 plotMotorFailures(out,name_ending,width,height)
 
-%% simulate fast 3rd motor failure
+%% simulate slow 3rd motor failure
 
-failure_time = 1;
-failure_slew_rate = 0.1;
-failure_time_delay_1 = 2;
-failure_time_delay_2 = 0;
+failure_time_mot_1      = 1000;
+failure_slew_rate_mot_1 = 0;
+failure_time_mot_2      = 2;
+failure_slew_rate_mot_2 = 1000;
+failure_time_mot_3      = 2;
+failure_slew_rate_mot_3 = 0.2;
+failure_time_mot_4      = 2;
+failure_slew_rate_mot_4 = 1000;
 name_ending = '_slow';
 out = sim('QuadcopterSimModel_Loiter_FTC','StartTime','-2','StopTime','15');
 plotMotorFailures(out,name_ending,width,height)
+
+%% fly square with only two rotors
+
+% enable stick inputs
+block = find_system(gcb,'SearchDepth',0,'Name','Manual Switch');
+set_param(block{1}, 'sw', '1');
+
+% high yaw damping (like in cardboard flight test)
+copter.aero.rate_damp = 1.2;
+
+failure_time_mot_1      = 1000;
+failure_slew_rate_mot_1 = 0;
+failure_time_mot_2      = 1;
+failure_slew_rate_mot_2 = 1000;
+failure_time_mot_3      = 1000;
+failure_slew_rate_mot_3 = 0;
+failure_time_mot_4      = 1;
+failure_slew_rate_mot_4 = 1000;
+
+out = sim('QuadcopterSimModel_Loiter_FTC','StartTime','0','StopTime','30');
+
+figure
+hold on
+idx = 1:length(out.s_g.Time);
+idx = idx(1:12:end);
+idxr = 1:length(out.s_g_ref.Time);
+idxr = idxr(1:4:end);
+plot( squeeze(out.s_g_ref.Data(2,:,idxr)), squeeze(out.s_g_ref.Data(1,:,idxr)) )
+plot( squeeze(out.s_g.Data(2,:,idx)), squeeze(out.s_g.Data(1,:,idx)) )
+axis equal
+grid on
+xlabel('East position in s','interpreter','latex')
+ylabel('North position in m','interpreter','latex')
+legend('reference','measured','interpreter','latex','location','best')
+set(gca,'TickLabelInterpreter','latex');
+plot2Pdf( ['sim_failure_pos_pos'], width,height)
+
 
 %% plot results
 
