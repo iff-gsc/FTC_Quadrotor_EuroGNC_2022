@@ -11,20 +11,28 @@ addPathFtc();
 clc_clear;
 
 %% rotor failure parameters
-failure_time = 1;
-failure_slew_rate = 0.1;
-failure_time_delay_1 = 3;
-failure_time_delay_2 = 0;
+failure_time_mot_1      = 1000;
+failure_slew_rate_mot_1 = 0;
+failure_time_mot_2      = 2;
+failure_slew_rate_mot_2 = 1000;
+failure_time_mot_3      = 6;
+failure_slew_rate_mot_3 = 0.1;
+failure_time_mot_4      = 4;
+failure_slew_rate_mot_4 = 1000;
 
 %% control inputs
-simin.time = [ 0, 2:2.5:(2+2.5*8) ]';
-simin.signals.values = zeros( 4, 10 )';
-simin.signals.values(:,1) = [ 0, 1, 0, 0, 0, -1, 0, 0, 0, 0 ]'*0.365;
-simin.signals.values(:,2) = [ 0, 0, 0, -1, 0, 0, 0, 1, 0, 0 ]'*0.365;
-simin.signals.dimensions = 4;
+% fly 5m square after 5s
+simin.time                  = [ 0, 5:2.5:(5+2.5*8) ]';
+simin.signals.values        = zeros( 4, 10 )';
+simin.signals.values(:,1)   = [ 0, 1, 0, 0, 0, -1, 0, 0, 0, 0 ]'*0.365;
+simin.signals.values(:,2)   = [ 0, 0, 0, -1, 0, 0, 0, 1, 0, 0 ]'*0.365;
+simin.signals.dimensions    = 4;
 
 %% load physical copter parameters
 copter = copterLoadParams( 'copter_params_Minnie' );
+
+% increase rotational damping
+copter.aero.rate_damp = 1.2;
 
 %% environment parameters
 envir = envirLoadParams('params_envir','envir',0);
