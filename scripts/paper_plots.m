@@ -1,7 +1,16 @@
+% run multiple simulations to create figures for the paper
+
+% Disclamer:
+%   SPDX-License-Identifier: GPL-2.0-only
+% 
+%   Copyright (C) 2022 Yannic Beyer
+%   Copyright (C) 2022 TU Braunschweig, Institute of Flight Guidance
+% *************************************************************************
+
 init_Minnie_Loiter_FTC;
 
 % disable stick inputs
-block = find_system(gcb,'SearchDepth',0,'Name','Manual Switch');
+block = find_system('QuadcopterSimModel_Loiter_FTC','SearchDepth',1,'Name','Manual Switch');
 set_param(block{1}, 'sw', '0');
 
 % moderate yaw damping
@@ -99,7 +108,7 @@ function plotMotorFailures(out,name_ending,width,height)
     grid on
     xlabel('Time in s','interpreter','latex')
     ylabel('Position in m','interpreter','latex')
-    legend('$x_g$','$y_g$','$z_g$','interpreter','latex','location','southeast')
+    legend('$x_g$','$y_g$','$z_g$','interpreter','latex','location','east')
     set(gca,'TickLabelInterpreter','latex');
     plot2Pdf( ['sim_motor_failure_pos',name_ending], width,height)
 
@@ -111,7 +120,7 @@ function plotMotorFailures(out,name_ending,width,height)
     grid on
     xlabel('Time in s','interpreter','latex')
     ylabel('Angular velocity in rad/s','interpreter','latex')
-    legend('$p$','$q$','$r$','interpreter','latex','location','east')
+    legend('$p$','$q$','$r$','interpreter','latex','location','northeast')
     set(gca,'TickLabelInterpreter','latex');
     plot2Pdf( ['sim_motor_failure_rates',name_ending], width,height)
 
