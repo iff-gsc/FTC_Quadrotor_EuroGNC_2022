@@ -7,6 +7,16 @@ The controller presented here is based on the methods of Incremental Nonlinear D
 This code can be used to reproduce the figures from Ref. [1], on the one hand, and to investigate other rotor failures in simulation, on the other.
 For further information see Ref. [1].
 
+<div align="center">
+<h3>Flight Test Video</h3>
+  <a href="https://youtu.be/g6vfgj2IRvE">
+    <img 
+      src="https://img.youtube.com/vi/g6vfgj2IRvE/0.jpg" 
+      alt="Flight test" 
+      style="width:50%;">
+  </a>
+</div>
+
 
 ## Reference
 
@@ -38,11 +48,12 @@ If you use this code in an academic work, please cite:
   ```
 
 - **FlightGear (optional; for visualization):** 
-  - You also should install FlightGear for visualization. Tested versions are FlightGear 3.4.0 and FlightGear 2019.1.1 but others should also work.
+  - You should install FlightGear for visualization.
+  Tested versions are FlightGear 3.4.0 and FlightGear 2019.1.1 but others should also work.
   - On Windows you have to copy and paste the folder _<ftc_quadrotor_eurognc_2022>/libraries/ladac-examples-data/FlightGear/<models>_ into _$FG_HOME/Aircraft/_
 
 - **ArduPilot SITL (optional; for software in the loop (SITL) tests):**  
-  - You might install [ArduPilot SITL](https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html) if you want to do software in the loop simulations.
+  - You can install [ArduPilot SITL](https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html) if you want to do software in the loop simulations.
   - The controller of this project was implemented in an ArduPilot fork. Clone it: 
     ```
     git clone --recursive -b EuroGNC_2022_flight_test https://github.com/ybeyer/ardupilot.git`
