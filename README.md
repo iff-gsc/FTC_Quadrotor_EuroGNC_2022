@@ -56,7 +56,7 @@ If you use this code in an academic work, please cite:
   - You can install [ArduPilot SITL](https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html) if you want to do software in the loop simulations.
   - The controller of this project was implemented in an ArduPilot fork. Clone it: 
     ```
-    git clone --recursive -b EuroGNC_2022_flight_test https://github.com/ybeyer/ardupilot.git`
+    git clone --recursive -b EuroGNC_2022_flight_test https://github.com/ybeyer/ardupilot.git
     ```
   - Ground control station: You may install a ground control station like QGroundControl or MissionPlanner for communication with ArduPilot SITL.
 
