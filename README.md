@@ -20,7 +20,7 @@ For further information see Ref. [1].
 
 ## Reference
 
-[1] Beyer, Y., G&uuml;cker, F., Bremers, E., Steen, M., & Hecker, P. (2022). Incremental Passive Fault-Tolerant Control for Quadrotors With up to Three Successive Rotor Failures. In _6th CEAS Conference on Guidance, Navigation and Control (EuroGNC) 2022_.
+[1] [Beyer, Y., G&uuml;cker, F., Bremers, E., Steen, M., & Hecker, P. (2022). Incremental Passive Fault-Tolerant Control for Quadrotors With up to Three Successive Rotor Failures. In _6th CEAS Conference on Guidance, Navigation and Control (EuroGNC) 2022_.](https://eurognc.ceas.org/archive/EuroGNC2022/pdf/CEAS-GNC-2022-067.pdf)
 
 If you use this code in an academic work, please cite:
 
