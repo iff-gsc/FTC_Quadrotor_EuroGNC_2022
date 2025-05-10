@@ -32,6 +32,13 @@ If you use this code in an academic work, please cite:
      }
 
 
+## ++ Important Update ++
+
+**The flight controller has been revised and improved.**
+**The improved version has been published in this new repository: [Passive-FTC-Quadrotor](https://github.com/iff-gsc/Passive-FTC-Quadrotor).**  
+**We recommend using the improved version.**
+
+
 ## Installation
 
 - **MATLAB:**  
